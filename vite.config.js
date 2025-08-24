@@ -8,4 +8,29 @@ export default defineConfig({
     vue(),
     tailwindcss(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['vue'],
+          components: [
+            './src/components/TabBar.vue',
+            './src/components/SearchBar.vue',
+            './src/components/InfoCard.vue',
+            './src/components/EmptyState.vue',
+            './src/components/AddInfoModal.vue',
+            './src/components/ViewInfoModal.vue',
+            './src/components/Toast.vue',
+            './src/components/PWAInstallPrompt.vue',
+            './src/components/OfflineIndicator.vue'
+          ]
+        }
+      }
+    }
+  },
+  server: {
+    headers: {
+      'Service-Worker-Allowed': '/'
+    }
+  }
 })

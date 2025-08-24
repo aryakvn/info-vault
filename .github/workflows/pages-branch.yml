@@ -1,0 +1,68 @@
+name: Deploy to Pages Branch
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-to-pages-branch:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+        
+    - name: Build application
+      run: npm run build
+      
+    - name: Deploy to pages branch
+      run: |
+        # Configure git
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        
+        # Check if pages branch exists
+        if git show-ref --verify --quiet refs/remotes/origin/pages; then
+          echo "Pages branch exists, checking it out"
+          git checkout pages
+          git pull origin pages
+        else
+          echo "Creating new pages branch"
+          git checkout --orphan pages
+        fi
+        
+        # Remove all files except .git
+        git rm -rf . || true
+        
+        # Copy built files from dist to root
+        cp -r dist/* .
+        
+        # Add all files
+        git add .
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          # Commit changes with timestamp
+          git commit -m "Deploy to pages branch - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          
+          # Push to pages branch
+          git push origin pages --force
+          echo "Successfully deployed to pages branch"
+        fi
