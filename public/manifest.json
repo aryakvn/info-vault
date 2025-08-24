@@ -2,12 +2,12 @@
   "name": "InfoVault - Secure Information Storage",
   "short_name": "InfoVault",
   "description": "A secure, offline-capable information storage application for managing personal data, credit cards, wallets, and more.",
-  "start_url": "/",
+  "start_url": "/info-vault/",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#6366f1",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "/info-vault/",
   "lang": "en",
   "categories": [
     "productivity",
@@ -16,13 +16,13 @@
   ],
   "icons": [
     {
-      "src": "/icons/72.png",
+      "src": "/info-vault/icons/72.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/info-vault/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
@@ -33,10 +33,10 @@
       "name": "Add New Information",
       "short_name": "Add Info",
       "description": "Quickly add new information to your vault",
-      "url": "/?action=add",
+      "url": "/info-vault/?action=add",
       "icons": [
         {
-          "src": "/icons/72.png",
+          "src": "/info-vault/icons/72.png",
           "sizes": "72x72"
         }
       ]
@@ -45,10 +45,10 @@
       "name": "Search Information",
       "short_name": "Search",
       "description": "Search through your stored information",
-      "url": "/?action=search",
+      "url": "/info-vault/?action=search",
       "icons": [
         {
-          "src": "/icons/72.png",
+          "src": "/info-vault/icons/72.png",
           "sizes": "72x72"
         }
       ]

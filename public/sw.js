@@ -4,18 +4,18 @@ const DYNAMIC_CACHE = 'infovault-dynamic-v1.0.0';
 
 // Files to cache for offline use
 const STATIC_FILES = [
-  '/',
-  '/index.html',
-  '/src/main.js',
-  '/src/App.vue',
-  '/src/style.css',
-  '/src/components/TabBar.vue',
-  '/src/components/SearchBar.vue',
-  '/src/components/InfoCard.vue',
-  '/src/components/EmptyState.vue',
-  '/src/components/AddInfoModal.vue',
-  '/src/components/ViewInfoModal.vue',
-  '/src/components/Toast.vue',
+  '/info-vault/',
+  '/info-vault/index.html',
+  '/info-vault/src/main.js',
+  '/info-vault/src/App.vue',
+  '/info-vault/src/style.css',
+  '/info-vault/src/components/TabBar.vue',
+  '/info-vault/src/components/SearchBar.vue',
+  '/info-vault/src/components/InfoCard.vue',
+  '/info-vault/src/components/EmptyState.vue',
+  '/info-vault/src/components/AddInfoModal.vue',
+  '/info-vault/src/components/ViewInfoModal.vue',
+  '/info-vault/src/components/Toast.vue',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
@@ -73,13 +73,13 @@ self.addEventListener('fetch', (event) => {
   }
   
   // Handle different types of requests
-  if (url.pathname === '/' || url.pathname === '/index.html') {
+  if (url.pathname === '/info-vault/' || url.pathname === '/info-vault/index.html') {
     // Main page - serve from cache first
     event.respondWith(serveFromCacheFirst(request, STATIC_CACHE));
-  } else if (url.pathname.startsWith('/src/') || url.pathname.startsWith('/components/')) {
+  } else if (url.pathname.startsWith('/info-vault/src/') || url.pathname.startsWith('/info-vault/components/')) {
     // Vue components and source files - serve from cache first
     event.respondWith(serveFromCacheFirst(request, STATIC_CACHE));
-  } else if (url.pathname.startsWith('/icons/')) {
+  } else if (url.pathname.startsWith('/info-vault/icons/')) {
     // App icons - serve from cache first
     event.respondWith(serveFromCacheFirst(request, STATIC_CACHE));
   } else if (url.origin === 'https://cdnjs.cloudflare.com') {
@@ -108,7 +108,7 @@ async function serveFromCacheFirst(request, cacheName) {
   } catch (error) {
     console.error('Cache first strategy failed:', error);
     // Return a fallback response if available
-    const fallbackResponse = await caches.match('/index.html');
+    const fallbackResponse = await caches.match('/info-vault/index.html');
     if (fallbackResponse) {
       return fallbackResponse;
     }
@@ -167,8 +167,8 @@ self.addEventListener('push', (event) => {
     const data = event.data.json();
     const options = {
       body: data.body || 'New information available',
-      icon: '/icons/icon-192x192.png',
-      badge: '/icons/icon-72x72.png',
+      icon: '/info-vault/icons/icon-192x192.png',
+      badge: '/info-vault/icons/icon-72x72.png',
       vibrate: [100, 50, 100],
       data: {
         dateOfArrival: Date.now(),
@@ -178,12 +178,12 @@ self.addEventListener('push', (event) => {
         {
           action: 'explore',
           title: 'View',
-          icon: '/icons/icon-72x72.png'
+          icon: '/info-vault/icons/icon-72x72.png'
         },
         {
           action: 'close',
           title: 'Close',
-          icon: '/icons/icon-72x72.png'
+          icon: '/info-vault/icons/icon-72x72.png'
         }
       ]
     };
@@ -200,7 +200,7 @@ self.addEventListener('notificationclick', (event) => {
   
   if (event.action === 'explore') {
     event.waitUntil(
-      clients.openWindow('/')
+      clients.openWindow('/info-vault/')
     );
   }
 });

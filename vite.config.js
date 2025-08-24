@@ -22,7 +22,6 @@ export default defineConfig({
             './src/components/AddInfoModal.vue',
             './src/components/ViewInfoModal.vue',
             './src/components/Toast.vue',
-            './src/components/PWAInstallPrompt.vue',
             './src/components/OfflineIndicator.vue'
           ]
         }

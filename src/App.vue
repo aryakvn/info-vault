@@ -83,8 +83,6 @@
     <!-- Toast Notification -->
     <Toast ref="toastRef" />
     
-    <!-- PWA Install Prompt -->
-    <PWAInstallPrompt />
   </div>
 </template>
 
@@ -97,7 +95,7 @@ import EmptyState from './components/EmptyState.vue'
 import AddInfoModal from './components/AddInfoModal.vue'
 import ViewInfoModal from './components/ViewInfoModal.vue'
 import Toast from './components/Toast.vue'
-import PWAInstallPrompt from './components/PWAInstallPrompt.vue'
+
 import OfflineIndicator from './components/OfflineIndicator.vue'
 
 // State
