@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #6366f1;
+    --color-secondary: #8b5cf6;
+    --color-dark: #1e293b;
+    --color-light: #f8fafc;
+  }
+}
+
+@theme {
+  --color-primary: #6366f1;
+  --color-secondary: #8b5cf6;
+  --color-dark: #1e293b;
+  --color-light: #f8fafc;
+}
+
+
+@layer components {
+  .neumorphic {
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: 8px 8px 16px #d9d9d9,
+      -8px -8px 16px #ffffff;
+  }
+
+  .neumorphic-inset {
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: inset 8px 8px 16px #d9d9d9,
+      inset -8px -8px 16px #ffffff;
+  }
+
+  .neumorphic-btn {
+    border-radius: 0.75rem;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: 4px 4px 8px #d9d9d9,
+      -4px -4px 8px #ffffff;
+    transition: all 0.2s ease;
+  }
+
+  .neumorphic-btn.bg-primary {
+    background: linear-gradient(145deg, #6366f1, #8b5cf6);
+    box-shadow: 4px 4px 8px #d9d9d9,
+      -4px -4px 8px #ffffff;
+  }
+
+  .neumorphic-btn:active {
+    box-shadow: inset 4px 4px 8px #d9d9d9,
+      inset -4px -4px 8px #ffffff;
+  }
+
+  .input-field {
+    border-radius: 0.75rem;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: inset 4px 4px 8px #d9d9d9,
+      inset -4px -4px 8px #ffffff;
+  }
+
+  .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  @media (max-width: 640px) {
+    .neumorphic {
+      border-radius: 0.75rem;
+      box-shadow: 4px 4px 8px #d9d9d9,
+        -4px -4px 8px #ffffff;
+    }
+  }
+
+  .break-all {
+    word-break: break-all;
+  }
+
+  /* Enhanced blur effect for sensitive information */
+  .blur-sm {
+    filter: blur(4px);
+    transition: filter 0.2s ease;
+  }
+
+  /* Hide/show button hover effects */
+  .hide-show-btn {
+    transition: all 0.2s ease;
+  }
+
+  .hide-show-btn:hover {
+    transform: scale(1.1);
+  }
+
+  /* Sensitive field indicators */
+  .sensitive-field {
+    position: relative;
+  }
+
+  .sensitive-field::after {
+    content: "🔒";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+}
